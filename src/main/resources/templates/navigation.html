@@ -26,9 +26,23 @@
                 <li class="nav-item" th:classappend="${activeTab == 'Home' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/}">@GeekMarket<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item" th:classappend="${activeTab == 'Category' ? 'active' : ''}">
-                    <a class="nav-link" th:href="@{/categories}">Category<span class="sr-only">(current)</span></a>
+                <li class="nav-item" th:classappend="${activeTab == 'Shop' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/shop}">Каталог<span class="sr-only">(current)</span></a>
                 </li>
+
+                <li class="nav-item" th:classappend="${activeTab == 'Cart' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/cart}">Корзина<span class="sr-only">(current)</span></a>
+                </li>
+
+                <div sec:authorize="isAnonymous()">
+                    <li class="nav-item" th:classappend="${activeTab == 'RegistrationForm' ? 'active' : ''}">
+                        <a class="nav-link" th:href="@{/register/showRegistrationForm}">Добавить пользователя<span class="sr-only">(current)</span></a>
+                    </li>
+                </div>
+
+                <div sec:authorize="isAnonymous()">
+                    <a class="nav-link" th:href="@{/login}">Войти</a>
+                </div>
 
                 <div sec:authorize="isAuthenticated()">
                     <li class="nav-item">
