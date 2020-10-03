@@ -1,28 +1,58 @@
 <!DOCTYPE html>
 
+<html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Aroma Shop - Home</title>
 
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/dist/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/main.js}"></script>
-    <link type="text/css" rel="stylesheet" th:href="@{/webjars/bootstrap/4.1.3/css/bootstrap.min.css}"/>
-    <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}"/>
+  <link rel="icon" href="img/Fevicon.png" type="image/png">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/bootstrap/bootstrap.min.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/themify-icons/themify-icons.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/nice-select/nice-select.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.theme.default.min.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}"/>
+  <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-
 <body>
+  <div th:replace="~{header :: navi(Home)}" />
 
-<div th:replace="~{navigation :: navi(Home)}" />
+  <main class="site-main">
+    <section class="hero-banner">
+      <div class="container">
+        <div class="row no-gutters align-items-center pt-60px">
+          <div class="col-5 d-none d-sm-block">
+            <div class="hero-banner__img">
+              <img class="img-fluid" src="img/home/hero-banner.png" alt="">
+            </div>
+          </div>
+          <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
+            <div class="hero-banner__content">
+              <h4>Магазин - это весело</h4>
+              <h1>ОЗНАКОМЬТЕСЬ С НАШИМИ ТОВАРАМИ</h1>
+              <p>Добро пожаловать в наш замечательный магазин Aroma, работающий для Вас с 2018 года!</p>
+              <a class="button button-hero" th:href="@{/shop}">Посмотреть сейчас</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<div class="container">
-    <br>
-    <h1>@GeekMarket</h1>
+  <div th:replace="~{footer :: foot}" />
 
-    Добро пожаловать в наш замечательный магазин GeekMarket, работающий для Вас с 2018 года!
-</div>
-
-<div th:replace="~{my-footer :: foot}" />
+  <script type="text/javascript" th:src="@{/vendors/jquery/jquery-3.2.1.min.js}"></script>
+  <script type="text/javascript" th:src="@{/vendors/bootstrap/bootstrap.bundle.min.js}"></script>
+  <script type="text/javascript" th:src="@{/vendors/skrollr.min.js}"></script>
+  <script type="text/javascript" th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
+  <script type="text/javascript" th:src="@{/vendors/nice-select/jquery.nice-select.min.js}"></script>
+  <script type="text/javascript" th:src="@{/vendors/jquery.ajaxchimp.min.js}"></script>
+  <script type="text/javascript" th:src="@{/vendors/mail-script.js}"></script>
+  <script type="text/javascript" th:src="@{/js/main.js}"></script>
 </body>
 </html>

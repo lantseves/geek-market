@@ -32,7 +32,7 @@ public class RegistrationController {
     @GetMapping("/showRegistrationForm")
     public String showMyLoginPage(Model theModel) {
         theModel.addAttribute("systemUser", new SystemUser());
-        return "registration-form";
+        return "register";
     }
 
     @PostMapping("/processRegistrationForm")
@@ -40,16 +40,16 @@ public class RegistrationController {
                                           BindingResult theBindingResult, Model theModel) {
         String userName = theSystemUser.getUserName();
         if (theBindingResult.hasErrors()) {
-            return "registration-form";
+            return "register";
         }
         User existing = userService.findByUserName(userName);
         if (existing != null) {
             // theSystemUser.setUserName(null);
             theModel.addAttribute("systemUser", theSystemUser);
             theModel.addAttribute("registrationError", "User name already exists");
-            return "registration-form";
+            return "register";
         }
         userService.save(theSystemUser);
-        return "registration-confirmation";
+        return "register-confirmation";
     }
 }

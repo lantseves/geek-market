@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Aroma Shop - Login</title>
+	<link rel="icon" href="img/Fevicon.png" type="image/png">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/bootstrap/bootstrap.min.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/vendors/themify-icons/themify-icons.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/vendors/linericon/style.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.theme.default.min.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/nice-select/nice-select.css}">
+  <link type="text/css" rel="stylesheet" th:href="@{/vendors/nouislider/nouislider.min.css}">
+
+	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div th:replace="~{header :: navi(Login)}" />
+  
+  <!--================Login Box Area =================-->
+	<section class="login_box_area section-margin">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<div class="hover">
+							<h4>Впервые в нашем магазине?</h4>
+							<p>Зарегистрируйтесь и приступайте к покупкам!</p>
+							<a class="button button-account" th:href="@{/register/showRegistrationForm}">Зарегистрироваться</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3>Авторизоваться</h3>
+						<form class="row login_form" th:action="@{/authenticateTheUser}" method="POST" id="contactForm">
+							<div class="form-group">
+								<div class="col-xs-15">
+									<div>
+										<div th:if="${param.error} != null">
+											<div class="alert alert-danger col-xs-offset-1 col-xs-10">
+												Invalid username and password.
+											</div>
+										</div>
+										<div th:if="${param.logout} != null">
+											<div class="alert alert-success col-xs-offset-1 col-xs-10">
+												You have been logged out.
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="name" name="username" placeholder="Логин" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Пароль" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="button button-login w-100">Войти</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
+	<div th:replace="~{footer :: foot}" />
+
+	<script type="text/javascript" th:src="@{/vendors/jquery/jquery-3.2.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/vendors/bootstrap/bootstrap.bundle.min.js}"></script>
+	<script type="text/javascript" th:src="@{/vendors/skrollr.min.js}"></script>
+	<script type="text/javascript" th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
+	<script type="text/javascript" th:src="@{/vendors/nice-select/jquery.nice-select.min.js}"></script>
+	<script type="text/javascript" th:src="@{/vendors/jquery.ajaxchimp.min.js}"></script>
+	<script type="text/javascript" th:src="@{/vendors/mail-script.js}"></script>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</body>
+</html>

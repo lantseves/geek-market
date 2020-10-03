@@ -10,9 +10,4 @@ public class MainController {
     public String showHomePage() {
         return "index";
     }
-
-    @RequestMapping("favicon.ico")
-    String favicon() {
-        return "forward:/resources/favicon.ico";
-    }
 }
