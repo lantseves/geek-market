@@ -47,9 +47,7 @@ public class SecurityConfig3 extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").hasAnyRole("ADMIN" , "USER")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -70,7 +68,7 @@ public class SecurityConfig3 extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(userService);
-       // auth.setPasswordEncoder(passwordEncoder());
+        //auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }
 }

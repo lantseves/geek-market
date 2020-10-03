@@ -36,6 +36,10 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
+    @NotNull
+    @Column(name = "email")
+    private String email;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles",
         joinColumns = @JoinColumn(name = "user_id"),
@@ -51,6 +55,7 @@ public class User {
                 @NotNull String firstName,
                 @NotNull String lastName,
                 @NotNull String phone,
+                @NotNull String email,
                 List<Role> roles) {
         this.id = id;
         this.userName = userName;
@@ -58,6 +63,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
+        this.email = email;
         this.roles = roles;
     }
 
@@ -117,6 +123,14 @@ public class User {
         this.roles = roles;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -126,6 +140,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 ", roles=" + roles +
                 '}';
     }

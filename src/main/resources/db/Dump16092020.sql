@@ -43,6 +43,65 @@ INSERT INTO `categories` VALUES (1,'Бытовая техника',NULL),(2,'Н�
 UNLOCK TABLES;
 
 --
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `price` decimal(10,0) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_USER_idx` (`user_id`),
+  CONSTRAINT `FK_USER` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,70000,2);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders_item`
+--
+
+DROP TABLE IF EXISTS `orders_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `quantity` int(11) NOT NULL,
+  `item_price` decimal(10,0) NOT NULL,
+  `total_price` decimal(10,0) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_PRODUCT_idx` (`product_id`),
+  KEY `FK_ORDER_idx` (`order_id`),
+  CONSTRAINT `FK_ORDER` FOREIGN KEY (`order_id`) REFERENCES `orders_item` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `FK_PRODUCT` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders_item`
+--
+
+LOCK TABLES `orders_item` WRITE;
+/*!40000 ALTER TABLE `orders_item` DISABLE KEYS */;
+INSERT INTO `orders_item` VALUES (1,2,20000,40000,2,1),(2,1,30000,30000,3,1);
+/*!40000 ALTER TABLE `orders_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `products`
 --
 
@@ -62,7 +121,7 @@ CREATE TABLE `products` (
   PRIMARY KEY (`id`),
   KEY `FK_CATEGORY_ID` (`category_id`),
   CONSTRAINT `FK_CATEGORY_ID` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,6 +130,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,4,'111111',NULL,'Хороший телевизор 1','Плоский экран, цветной 1','Полное описание',10000.00,'2020-09-16 00:00:00'),(2,4,'444444',NULL,'Хороший телевизор 4','Плоский экран, цветной 4','Полное описание',20000.00,'2020-09-16 00:00:00'),(3,4,'333333',NULL,'Хороший телевизор 3','Плоский экран, цветной 3','Полное описание',30000.00,'2020-09-16 00:00:00'),(4,4,'222222',NULL,'Хороший телевизор 2','Плоский экран, цветной 2','Полное описание',40000.00,'2020-09-16 00:00:00'),(5,5,'121212',NULL,'Плеер','Маленький плеер','Полное описание',5000.00,'2020-09-16 00:00:00'),(6,5,'131313',NULL,'Буфер','Буфер для машины','Полное описание',10000.00,'2020-09-16 00:00:00'),(7,5,'141414',NULL,'Магнитофон','Магнитафон с колонками','Полное описание',2000.00,'2020-09-16 00:00:00');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +174,7 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `phone` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +183,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'evgeniy','{noop}1234','Evgeniy','Lantsev','lantsev_es@mail.ru','+7 (918) 110-35-06'),(2,'admin','{noop}123','admin','admin','admin@mail.ru','+7 (918) 110-35-06');
+INSERT INTO `users` VALUES (1,'evgeniy','{noop}123','Evgeniy','Lantsev','lantsev_es@mail.ru','+7 (918) 110-35-06'),(2,'admin','{noop}123','admin','admin','admin@mail.ru','+7 (918) 110-35-06'),(4,'test','{noop}123','123','123','lantsev_es@mail.ru','+79181103506'),(5,'test1','{noop}123','firstName1','lastName1','lantsev_es@mail.ru','+79181103506');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +199,7 @@ CREATE TABLE `users_roles` (
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
   KEY `FK_ROLE_ID` (`role_id`),
-  CONSTRAINT `FK_USER_ID_01` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_USER_ID_01` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `FK_ROLE_ID` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -150,7 +210,7 @@ CREATE TABLE `users_roles` (
 
 LOCK TABLES `users_roles` WRITE;
 /*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` VALUES (1,1),(2,1),(1,2),(2,2);
+INSERT INTO `users_roles` VALUES (1,1),(2,1),(1,2),(2,2),(4,2),(5,2);
 /*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -163,4 +223,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-13 12:15:24
+-- Dump completed on 2020-09-16 17:50:04

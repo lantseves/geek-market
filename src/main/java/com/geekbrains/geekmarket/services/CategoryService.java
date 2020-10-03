@@ -30,4 +30,8 @@ public class CategoryService {
             return new ArrayList<>() ;
         }
     }
+
+    public Category getCategoryById(long id) {
+        return categoryRepository.findById(id).orElse(null) ;
+    }
 }

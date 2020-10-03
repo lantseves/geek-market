@@ -12,14 +12,14 @@
     <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
 <body>
-<div th:replace="~{navigation :: navi(Category)}" />
+<div th:replace="~{navigation :: navi(Shop)}" />
 <div class="container">
     <h1>Список Категорий</h1>
     <div class="list-group">
 
         <div  th:each="category : ${categories}">
             <nav class="navbar navbar-light bg-light">
-                <a th:href="@{'/categories/' + ${category.id}}" class="list-group-item list-group-item-action">
+                <a th:href="@{'/shop/' + ${category.id}}" class="list-group-item list-group-item-action">
                     <span th:text="${category.title}"></span>
                 </a>
             </nav>
