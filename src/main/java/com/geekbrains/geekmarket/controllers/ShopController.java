@@ -30,10 +30,12 @@ public class ShopController {
     }
 
     @GetMapping
-    public String showAllCategoryParentIsNull(Model model) {
-        List<Category> categoryList = categoryService.getAllCategoryByParentIsNull() ;
+    public String showAllProductList(Model model) {
+        List<Category> categoryList = categoryService.getAllCategory() ;
         model.addAttribute("categories" , categoryList) ;
-        return "categories_list" ;
+        List<Product> products = productService.getAllProduct() ;
+        model.addAttribute("products", products) ;
+        return "category" ;
     }
 
     @GetMapping("/{parentId}")

@@ -31,7 +31,13 @@ public class CategoryService {
         }
     }
 
+    public List<Category> getAllCategory() {
+        return categoryRepository.findAll() ;
+    }
+
     public Category getCategoryById(long id) {
         return categoryRepository.findById(id).orElse(null) ;
     }
+
+
 }

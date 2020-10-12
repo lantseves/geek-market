@@ -11,4 +11,6 @@ public interface CategoryRepository extends CrudRepository<Category , Long> {
     List<Category> findAllByParentIsNull() ;
 
     List<Category> findAllByParent(Category parent) ;
+
+    List<Category> findAll() ;
 }
