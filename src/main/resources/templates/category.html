@@ -18,81 +18,76 @@
   <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+
     <div th:replace="~{header :: navi(Shop)}" />
-
 	<!-- ================ category section start ================= -->		  
-  <section class="section-margin--small mb-5">
-    <div class="container">
-      <div class="row">
+      <section class="section-margin--small mb-5">
+        <div class="container">
+          <div class="row">
+            <form class="col-xl-3 col-lg-4 col-md-5" action="#">
 
-
-        <div class="col-xl-3 col-lg-4 col-md-5">
-          <div class="sidebar-categories">
-            <div class="head">Категории товаров</div>
-            <ul class="main-categories">
-              <li class="common-filter">
-                <form action="#">
-                  <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">Men</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="women" name="brand"><label for="women">Women</label></li>
-
+                <div class="sidebar-categories">
+                  <div class="head">Категории товаров</div>
+                  <ul class="main-categories">
+                    <li class="common-filter">
+                        <ul th:each="category : ${categories}">
+                          <li class="filter-list"><input class="pixel-radio" type="radio" th:id="${category.id}" name="brand">
+                            <label th:for="${category.id}" th:text="${category.title}"></label>
+                          </li>
+                        </ul>
+                    </li>
                   </ul>
-                </form>
-              </li>
-            </ul>
-          </div>
-
-          <div class="sidebar-filter">
-            <div class="top-filter-head">Фильтры</div>
-            <div class="common-filter">
-              <div class="head">Цена</div>
-              <div class="price-range-area">
-                <div id="price-range"></div>
-                <div class="value-wrapper d-flex">
-                  <div class="price">От:</div>
-                  <span></span>
-                  <div id="lower-value"></div>
-                  <div class="to">до</div>
-                  <span></span>
-                  <div id="upper-value"></div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <br>
-          <a class="button button-hero" th:href="@{/shop}">Применить</a>
-        </div>
 
-        <div class="col-xl-9 col-lg-8 col-md-7">
-          <!-- Start Best Seller -->
-          <section class="lattest-product-area pb-40 category-list">
-            <div class="row" >
-              <div class="col-md-6 col-lg-4" th:each="product : ${products}">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <img class="card-img" src="img/product/no-product-image.png" alt="">
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>Kids Toy</p>
-                    <h4 class="card-product__title"><a href="#" th:text="${product.title}"></a></h4>
-                    <p class="card-product__price" th:text="${product.price}"></p>
+                <div class="sidebar-filter">
+                  <div class="top-filter-head">Фильтры</div>
+                  <div class="common-filter">
+                    <div class="head">Цена</div>
+                    <div class="price-range-area">
+                      <div id="price-range"></div>
+                      <div class="value-wrapper d-flex">
+                        <div class="price">От:</div>
+                        <span></span>
+                        <div id="lower-value"></div>
+                        <div class="to">до</div>
+                        <span></span>
+                        <div id="upper-value"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+                <br>
+                <a class="button button-hero" th:href="@{/shop}">Применить</a>
+
+            </form>
+
+            <div class="col-xl-9 col-lg-8 col-md-7">
+              <!-- Start Best Seller -->
+              <section class="lattest-product-area pb-40 category-list">
+                <div class="row" >
+                  <div class="col-md-6 col-lg-4" th:each="product : ${products}">
+                    <div class="card text-center card-product">
+                      <div class="card-product__img">
+                        <img class="card-img" src="img/product/no-product-image.png" alt="">
+                        <ul class="card-product__imgOverlay">
+                          <li><button><i class="ti-shopping-cart"></i></button></li>
+                        </ul>
+                      </div>
+                      <div class="card-body">
+                        <p th:text="${product.category.title}"></p>
+                        <h4 class="card-product__title"><a th:href="@{/shop/} + ${product.id}" th:text="${product.title}"></a></h4>
+                        <p class="card-product__price" th:text="${product.price}"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!-- End Best Seller -->
             </div>
-          </section>
-          <!-- End Best Seller -->
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 	<!-- ================ category section end ================= -->
-
     <div th:replace="~{footer :: foot}" />
 
   <script type="text/javascript" th:src="@{/vendors/jquery/jquery-3.2.1.min.js}"></script>

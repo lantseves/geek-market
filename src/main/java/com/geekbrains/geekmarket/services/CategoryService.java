@@ -18,19 +18,6 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> getAllCategoryByParentIsNull() {
-        return categoryRepository.findAllByParentIsNull() ;
-    }
-
-    public List<Category> getAllCategoriesByParent(long parentId) {
-        Optional<Category> categoryOptional = categoryRepository.findById(parentId) ;
-        if (categoryOptional.isPresent()) {
-            return categoryRepository.findAllByParent(categoryOptional.get());
-        } else {
-            return new ArrayList<>() ;
-        }
-    }
-
     public List<Category> getAllCategory() {
         return categoryRepository.findAll() ;
     }
@@ -39,5 +26,12 @@ public class CategoryService {
         return categoryRepository.findById(id).orElse(null) ;
     }
 
+    public Category getCategoryByTitle(String title) {
+        return categoryRepository.findFirstByTitle(title) ;
+    }
+
+    public void addCategory(Category category) {
+        categoryRepository.save(category) ;
+    }
 
 }

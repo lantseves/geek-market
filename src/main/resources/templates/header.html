@@ -44,16 +44,16 @@
                                 </li>
                             </div>
 
-                            <!--
-                            <div sec:authorize="isAuthenticated()">
-                                <li class="nav-item">
-                                    <form th:action="@{/logout}" method="POST">
-                                        <input type="submit" class="nav-link" value="Выйти"/>
-                                    </form>
+                            <div sec:authorize="hasRole('ADMIN')">
+                                <li class="nav-item submenu dropdown" th:classappend="${activeTab == 'Admin' ? 'active' : ''}">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">Админ</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/role/showAddForm}">Роли</a></li>
+                                        <li class="nav-item"><a class="nav-link" th:href="@{/category/showAddForm}">Категории</a></li>
+                                    </ul>
                                 </li>
                             </div>
-                            -->
-
                         </ul>
 
                         <ul class="nav-shop">

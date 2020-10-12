@@ -38,20 +38,10 @@ public class ShopController {
         return "category" ;
     }
 
-    @GetMapping("/{parentId}")
-    public String showAllCategoryByParentId(Model model, @PathVariable("parentId")long parentId) {
-        List<Category> categoryList = categoryService.getAllCategoriesByParent(parentId) ;
-
-        if (categoryList.size() > 0) {
-            model.addAttribute("categories", categoryList);
-            return "categories_list";
-        }
-
-        List<Product> products = productService.getListProductByCategories(parentId) ;
-        if (products.size() > 0) {
-            model.addAttribute("products", products) ;
-            return "product-list" ;
-        }
-        return "categories_list" ;
+    @GetMapping("/{id}")
+    public String showProduct(Model model,@PathVariable("id") int id) {
+        Product product = productService.getProductById(id) ;
+        model.addAttribute("product", product) ;
+        return "single-product" ;
     }
 }

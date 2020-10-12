@@ -18,10 +18,6 @@ public class Category {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name="parent")
-    private Category parent;
-
     public Category() {
     }
 
@@ -50,20 +46,11 @@ public class Category {
         this.title = title;
     }
 
-    public Category getParent() {
-        return parent;
-    }
-
-    public void setParent(Category parent) {
-        this.parent = parent;
-    }
-
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", parent=" + parent +
                 '}';
     }
 }

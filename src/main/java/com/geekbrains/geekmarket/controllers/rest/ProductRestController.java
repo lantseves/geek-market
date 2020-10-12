@@ -1,4 +1,4 @@
-package com.geekbrains.geekmarket.controllers;
+package com.geekbrains.geekmarket.controllers.rest;
 
 
 import com.geekbrains.geekmarket.entities.Product;

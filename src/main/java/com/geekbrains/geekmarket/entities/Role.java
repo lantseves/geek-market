@@ -2,25 +2,27 @@ package com.geekbrains.geekmarket.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "roles")
 public class Role {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
-    @NotNull
+
     @Column(name = "name")
+    @NotNull(message = "not null check")
+    @Size(min = 3, message = "role name length must be greater than 2 symbols")
     private String name;
 
     public Role() {
     }
 
-    public Role(@NotNull String name) {
+    public Role(String name) {
         this.name = name;
     }
 
